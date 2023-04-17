@@ -67,7 +67,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # appdev Gems
 gem 'faker'
 group :development do
-  gem 'annotate'
+  gem 'annotate', git: 'https://github.com/ctran/annotate_models.git'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
