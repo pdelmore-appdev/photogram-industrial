@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+ .image-thumbnail {
+  width: 50px;
+  height: auto;
+  border-radius: 50px;
+  border: 1px solid black;
+ }
+
+ .img-avatar {
+  border-radius: 100px;
+  border: 1px solid black;
+ }

@@ -9,10 +9,20 @@ task sample_data: :environment do
     User.delete_all
   end
 
-usernames = Array.new { Faker::Name.first_name }
-usernames << "paulina"
-usernames << "alice"
-usernames << "bob"
+  10.times do
+    name = Faker::Name.first_name
+    User.create(
+      email: "#{name}@example.com",
+      password: "password",
+      username: name.downcase,
+      private: [true, false].sample,
+      bio: Faker::Quotes::Shakespeare.hamlet_quote,
+      avatar: "https://robohash.org/#{rand(9999)}",
+    )
+  end
+
+  usernames = Array.new
+  usernames << "paulina"
 
   usernames.each do |username|
     User.create(

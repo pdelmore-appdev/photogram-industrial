@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  avatar                 :string
+#  bio                    :string
 #  comments_count         :integer          default(0)
 #  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
