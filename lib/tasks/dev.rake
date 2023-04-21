@@ -30,6 +30,8 @@ task sample_data: :environment do
       username: username.downcase,
       password: "password",
       private: [true, false].sample,
+      bio: Faker::Quotes::Shakespeare.hamlet_quote,
+      avatar: "https://robohash.org/#{rand(9999)}",
     )
   end
   p "#{User.count} users have been created."

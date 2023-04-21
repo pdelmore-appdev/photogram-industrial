@@ -25,7 +25,7 @@
   <div class="col-md-6 offset-3 mt-3">
     <div class="row g-3 lh-lg my-3">
       <div class="col-md-3">
-        <img src="<%= @user.own_photos.first.image %>" class="img-fluid img-avatar" alt="...">
+        <img src="<%= @user.avatar %>" class="img-fluid img-avatar" alt="...">
       </div>
       <div class="col-md-9">
         <div class="card-body">
@@ -48,7 +48,7 @@
           <div>
             <ul class="nav justify-content-center my-2 nav-fill">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#followersModal" href="#">
                   <strong>
                     <%= @user.accepted_received_follow_requests.count  %>
                   </strong>
@@ -56,7 +56,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link"  data-bs-toggle="modal" data-bs-target="#followingModal" href="#">
                   <strong>
                     <%= @user.accepted_sent_follow_requests.count %>
                   </strong>
@@ -64,14 +64,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">Pending</a>
+                <a class="nav-link">
+                  <strong>
+                    <%= @user.pending_follow_requests.count %>
+                  </strong>
+                  Pending
+                </a>
               </li>
             </ul>
           </div>
           <div class="btn btn-outline-secondary d-grid my-3">Follow button</div>
 
           <div class="my-5">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><%= @user.bio %></p>
             <p><a href="">Link</a></p>
           </div>
         </div>
@@ -103,4 +108,52 @@
 
   <% end %>
 
+</div>
+
+<!-- Followers Modal -->
+<div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="followersModalLabel"><%= @user.username %>'s followers</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <ul class="list-group">
+          <% @user.accepted_received_follow_requests.each do |f| %>
+            <li class="list-group-item"><%= f.sender.username %></li>
+<% end %>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Following Modal -->
+<div class="modal fade" id="followingModal" tabindex="-1" aria-labelledby="followingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="followingModalLabel"><%= @user.username %>'s following</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <ul class="list-group">
+          <% @user.accepted_sent_follow_requests.each do |f| %>
+            <li class="list-group-item"><%= f.recipient.username %></li>
+<% end %>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
