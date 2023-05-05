@@ -6,23 +6,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Resources
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/photos">Photos</a></li>
-            <li><a class="dropdown-item" href="/comments">Comments</a></li>
-            <li><a class="dropdown-item" href="/follow_requests">Follow requests</a></li>
-            <li><a class="dropdown-item" href="/likes">Likes</a></li>
-          </ul>
-        </li>
-
-      </ul>
-
-
-      <ul class="navbar-nav mx-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to feed_path(current_user.username), class: "nav-link" do %>
