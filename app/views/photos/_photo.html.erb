@@ -5,7 +5,9 @@
       <div class="card-header d-flex justify-content-between">
 
         <div>
-          <h4>
+                  <h4>
+        <%= image_tag photo.owner.avatar, class: "image-thumbnail me-2" %>
+
             <%= photo.owner.username %>
           </h4>
         </div>
