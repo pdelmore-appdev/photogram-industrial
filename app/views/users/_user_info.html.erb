@@ -1,0 +1,54 @@
+<!-- user info -->
+<div class="col-md-6 offset-3 mt-3">
+  <div class="row g-3 lh-lg my-3">
+    <div class="col-md-3">
+      <img src="<%= user.avatar %>" class="img-fluid img-avatar" alt="...">
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h1 class="card-title"><%= user.username %>
+            </h1>
+          </div>
+          <div>
+            <span class="badge bg-secondary">
+              <% if user.private == true %>
+                Private
+              <% else %>
+                Public
+              <% end %>
+            </span>
+          </div>
+        </div>
+
+        <div>
+
+          <ul class="nav justify-content-center my-2 nav-fill">
+            <li class="nav-item">
+              <%= link_to user.accepted_received_follow_requests.count.to_s + " Followers", "#",class: "nav-ink", data: { bs_toggle: "modal", bs_target: "#followersModal" } %>
+
+              <%= render partial: "users/modal_followers" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to user.accepted_sent_follow_requests.count.to_s + " Following", "#",class: "nav-ink", data: { bs_toggle: "modal", bs_target: "#followingModal" } %>
+
+              <%= render partial: "users/modal_following" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to user.pending_received_follow_requests.count.to_s + " Pending", "#",class: "nav-ink", data: { bs_toggle: "modal", bs_target: "#pendingModal" } %>
+
+              <%= render partial: "users/modal_pending" %>
+            </li>
+          </ul>
+        </div>
+        <div class="btn btn-outline-secondary d-grid my-3">Follow button</div>
+
+        <div class="my-5">
+          <p class="card-text"><%= user.bio %></p>
+          <p><a href="">Link</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

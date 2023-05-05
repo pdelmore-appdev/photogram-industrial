@@ -1,87 +1,10 @@
 <div class="row">
 
 
-  <!-- user info -->
-  <div class="col-md-6 offset-3 mt-3">
-    <div class="row g-3 lh-lg my-3">
-      <div class="col-md-3">
-        <img src="<%= @user.avatar %>" class="img-fluid img-avatar" alt="...">
-      </div>
-      <div class="col-md-9">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h1 class="card-title"><%= @user.username %>
-              </h1>
-            </div>
-            <div>
-              <span class="badge bg-secondary">
-                <% if @user.private == true %>
-                  Private
-                <% else %>
-                  Public
-                <% end %>
-              </span>
-            </div>
-          </div>
+<%= render "users/user_info", user: @user %>
 
-          <div>
-            <ul class="nav justify-content-center my-2 nav-fill">
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#followersModal" href="#">
-                  <strong>
-                    <%= @user.accepted_received_follow_requests.count  %>
-                  </strong>
-                  Followers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"  data-bs-toggle="modal" data-bs-target="#followingModal" href="#">
-                  <strong>
-                    <%= @user.accepted_sent_follow_requests.count %>
-                  </strong>
-                  Following
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#pendingModal" href="#">
-                  <strong>
-                    <%= @user.pending_received_follow_requests.count %>
-                  </strong>
-                  Pending
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="btn btn-outline-secondary d-grid my-3">Follow button</div>
+<%= render "users/user_photos_tab", user: @user %>
 
-          <div class="my-5">
-            <p class="card-text"><%= @user.bio %></p>
-            <p><a href="">Link</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6 offset-md-3 mb-4">
-
-    <ul class="nav nav-tabs nav-fill">
-      <li class="nav-item">
-        <%= link_to user_path(@user.username), class: "nav-link active" do %>
-          Posts
-          <span class="badge text-bg-secondary rounded-pill"><%= @user.own_photos.count %></span>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to liked_photos_path(@user.username), class: "nav-link" do %>
-          Liked
-          <span class="badge text-bg-secondary rounded-pill"><%= @user.liked_photos.count %></span>
-        <% end %>
-      </li>
-    </ul>
-
-  </div>
 
   <% @user.own_photos.each do |photo| %>
     <%= render "photos/photo", photo: photo %>
@@ -89,6 +12,7 @@
   <% end %>
 
 </div>
+
 
 <!-- Followers Modal -->
 <div class="modal fade" id="followersModal" tabindex="-1" aria-labelledby="followersModalLabel" aria-hidden="true">
